@@ -56,7 +56,8 @@ int main (int argc, char** argv) {
 
         MPI_Comm_rank(second_comm, &second_rank);
         MPI_Comm_size(second_comm, &second_cant_total);
-       // printf("rank: %d color %d", rank, color);
+        printf("hilo: %d  proceso %d \n", rank, second_rank);
+
         /*Variables locales para cada proceso según su rank en cada comunicador*/
         second_n = n/second_cant_total;
         second_a = a + second_rank*second_n*deltaX;
@@ -69,6 +70,7 @@ int main (int argc, char** argv) {
             printf("Funcion: x*x");
             printf("\nRango [%.2f, %.2f] con %d intervalos\n\n", a, b, n);
             start = clock();
+
         }
 
         /*Primer comunicador*/
@@ -122,7 +124,7 @@ int main (int argc, char** argv) {
             }
         }
         
-       printf("\n Hola soy proceso --> %d con id hijo --> %d \n:",rank,second_rank);
+      // printf("\n Hola soy proceso --> %d con id hijo --> %d \n:",rank,second_rank);
 
        /*El barrier permite que todos los procesos se sincronicen para que el root termine la ejecucion*/
         MPI_Barrier(MPI_COMM_WORLD);
